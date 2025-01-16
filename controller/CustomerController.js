@@ -44,7 +44,7 @@ export async function updateCustomer(req,res) {// admin
 
 export async function deleteCustomer(req,res){ //admin
     try {
-        const deletedCustomer =await Customer.findByIdAndDelete({_id:req.body._id});
+        const deletedCustomer =await Customer.findByIdAndDelete({_id:req.params.id});
         if(deleteCustomer){
             return res.status(204).json({
                 message:`Customer deleted`,
