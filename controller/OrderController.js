@@ -38,7 +38,8 @@ export async function updateOrder(req, res) {
   }
 }
 
-export async function changeOrderStatus(req, res) { //admin, manager
+export async function changeOrderStatus(req, res) {
+  //admin, manager
   try {
     const id = req.params.id;
     const status = req.body;
@@ -50,7 +51,7 @@ export async function changeOrderStatus(req, res) { //admin, manager
       });
     }
 
-    const updatedOrder = await Order.findByIdAndUpdate(id, {status});
+    const updatedOrder = await Order.findByIdAndUpdate(id, { status });
 
     if (updatedOrder) {
       return res.status(200).json({
@@ -69,24 +70,47 @@ export async function changeOrderStatus(req, res) { //admin, manager
   }
 }
 
-export async function deleteOrder(req,res){//admin
-    const orderId=req.params.id;
+export async function deleteOrder(req, res) {
+  //admin
+  const orderId = req.params.id;
 
-    try {
-        const deleteOrder=Order.findByIdAndDelete({_id:orderId});
-        if(deleteOrder){
-            return res.status(200).json({
-                message:"Order Deleted!",
-                data:deleteOrder
-            })
-        }
-
-        return res.status(404).json({
-            message:"Order Not Found!"
-        })
-    } catch (e) {
-        res.status(500).json({
-            errorMessage:e.message
-        })
+  try {
+    const deleteOrder = Order.findByIdAndDelete({ _id: orderId });
+    if (deleteOrder) {
+      return res.status(200).json({
+        message: "Order Deleted!",
+        data: deleteOrder,
+      });
     }
+
+    return res.status(404).json({
+      message: "Order Not Found!",
+    });
+  } catch (e) {
+    res.status(500).json({
+      errorMessage: e.message,
+    });
+  }
+}
+
+export async function findOrderById(req, res) {
+  //admin manager
+  try {
+    const orderId = req.params.id;
+    const getOrder = await Order.findById({ _id: orderId });
+    if (getOrder) {
+      return res.status(200).json({
+        message: "Order found",
+        data: getOrder,
+      });
+    }
+
+    return res.status(404).json({
+      message: "Order not found!",
+    });
+  } catch (e) {
+    res.status(500).json({
+      errorMessage: e.message,
+    });
+  }
 }
