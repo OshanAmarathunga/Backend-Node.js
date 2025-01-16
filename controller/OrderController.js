@@ -68,3 +68,25 @@ export async function changeOrderStatus(req, res) { //admin, manager
     });
   }
 }
+
+export async function deleteOrder(req,res){//admin
+    const orderId=req.params.id;
+
+    try {
+        const deleteOrder=Order.findByIdAndDelete({_id:orderId});
+        if(deleteOrder){
+            return res.status(200).json({
+                message:"Order Deleted!",
+                data:deleteOrder
+            })
+        }
+
+        return res.status(404).json({
+            message:"Order Not Found!"
+        })
+    } catch (e) {
+        res.status(500).json({
+            errorMessage:e.message
+        })
+    }
+}
