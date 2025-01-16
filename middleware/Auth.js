@@ -43,3 +43,5 @@ const verifyToken=(requiredRoles=[])=>{
         }
     }
 }
+
+export default verifyToken;
