@@ -6,10 +6,14 @@ import OrderRouter from './route/OrderRouter.js'
 import PaymentRouter from './route/Paymentroute.js'
 import ProductRouter from './route/ProductRouter.js'
 import UserRouter from './route/UserRoute.js'
+import { DBConnection } from './database/db.js'
+
 
 dotenv.config();
 const app=express();
 app.use(bodyparser.json()); 
+const port =process.env.PORT || 3000 ;
+DBConnection();
 
 //===========================================
 app.use('api/v1/customer', CustomerRouter); // http://localhost/api/v1/customer
@@ -20,7 +24,7 @@ app.use('api/v1/user', UserRouter);
 //===========================================
 
 
-app.listen(process.env.PORT,()=>{
-    console.log(`App is running on port ${process.env.PORT}`);
+app.listen(port,()=>{
+    console.log(`App is running on port ${port}`);
     
-})
+})      
