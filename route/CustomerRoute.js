@@ -1,9 +1,10 @@
 import express from 'express'
-import { saveCustomer } from '../controller/CustomerController.js';
+import { saveCustomer, updateCustomer } from '../controller/CustomerController.js';
 
 const router=express.Router();
 
-router.get('/getAllCustomers', saveCustomer);
+router.post('/saveCustomer', saveCustomer);
+router.put('/updateCustomer',updateCustomer);
 
 
 export default router;
