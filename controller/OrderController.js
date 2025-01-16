@@ -40,3 +40,23 @@ export async function updateOrder(req,res){// admin
         })
     }
 }
+
+export async function changeOrderStatus(req,res){
+    try {
+        const id=req.params.id;
+        const status=req.body;
+
+        if(!["PENDING","REJECTED","COMPLETED","CANCELLED"].includes(status)){
+            return res.status(400).json({
+                message:"Invalid status",
+                data:null
+            })
+        }
+
+
+    } catch (e) {
+        res.status(500).json({
+            errorMessage:e.message
+        })
+    }
+}
