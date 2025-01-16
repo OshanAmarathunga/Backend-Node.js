@@ -4,9 +4,9 @@ import { deleteCustomer, getAllCustomers, getCustomerById, saveCustomer, updateC
 const router=express.Router();
 
 router.post('/saveCustomer', saveCustomer);
-router.put('/updateCustomer:id',updateCustomer);
-router.delete('/deleteCustomer:id', deleteCustomer);
-router.get('/getCustomerById:id',getCustomerById);
+router.put('/updateCustomer/:id',updateCustomer);
+router.delete('/deleteCustomer/:id', deleteCustomer);
+router.get('/getCustomerById/:id',getCustomerById);
 router.get('getAllCustomers', getAllCustomers);
 
 
