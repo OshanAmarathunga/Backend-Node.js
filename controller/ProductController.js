@@ -1,1 +1,1 @@
-import Product from '../model/ProductSchema'
+import Product from '../model/ProductSchema.js'

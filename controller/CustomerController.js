@@ -1,2 +1,2 @@
-import Customer from "../model/CustomerSchema";
+import Customer from "../model/CustomerSchema.js";
 

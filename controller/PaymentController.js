@@ -1,1 +1,1 @@
-import Payment from '../model/PaymentSchema'
+import Payment from '../model/PaymentSchema.js'

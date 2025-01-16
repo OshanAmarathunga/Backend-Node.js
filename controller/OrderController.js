@@ -1,1 +1,1 @@
-import Order from '../model/OrderSchema'
+import Order from '../model/OrderSchema.js'

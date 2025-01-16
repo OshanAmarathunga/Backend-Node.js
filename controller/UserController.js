@@ -1,1 +1,1 @@
-import User from '../model/UserSchema'
+import User from '../model/UserSchema.js'
