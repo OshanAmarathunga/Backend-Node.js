@@ -94,7 +94,7 @@ export async function deleteOrder(req, res) {
 }
 
 export async function findOrderById(req, res) {
-  //admin manager
+  // admin , manager
   try {
     const orderId = req.params.id;
     const getOrder = await Order.findById({ _id: orderId });
@@ -104,7 +104,6 @@ export async function findOrderById(req, res) {
         data: getOrder,
       });
     }
-
     return res.status(404).json({
       message: "Order not found!",
     });
@@ -113,4 +112,23 @@ export async function findOrderById(req, res) {
       errorMessage: e.message,
     });
   }
+}
+
+export async function getAllOrders(req,res){ //manager, admin
+    try {
+        const {page,size}=req.query;
+        const orderList=await Order.find().sort({date:-1}).skip((page-1)*size).limit(size);
+        const total=await Order.countDocuments();
+        res.status(200).json({
+            message:"Order List",
+            data:{
+                orderList:orderList,
+                count:total
+            }
+        })
+    } catch (e) {
+        res.status(500).json({
+            errorMessage:e.message
+        })
+    }
 }
