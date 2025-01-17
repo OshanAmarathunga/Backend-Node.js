@@ -15,3 +15,29 @@ export async function saveProduct(req,res){
         })
     }
 }
+
+export async function updateProduct(req,res){
+    try {
+       const updatedProduct= await Product.findByIdAndUpdate(
+            req.params.id,
+            req.body
+        )
+
+        if(updatedProduct){
+            return res.status(200).json({
+                message:"Product updated!",
+                data:updatedProduct
+            })
+        }
+
+        res.status(404).json({
+            message:"Product not found!"
+        })
+
+
+    } catch (e) {
+        res.status(500).json({
+            errorMessage:e.message
+        })
+    }
+}
