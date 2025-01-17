@@ -111,3 +111,17 @@ export async function findAllProducts(req, res) {
     });
   }
 }
+
+export async function findLowStockProduct(req, res) {
+  try {
+    const dataList = await Product.findLowStockProducts();
+    res.status(200).json({
+      message: "Lower qty product list",
+      data: dataList,
+    });
+  } catch (e) {
+    res.status(500).json({
+      errorMessage: e.message,
+    });
+  }
+}
