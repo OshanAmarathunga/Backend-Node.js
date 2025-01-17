@@ -59,3 +59,26 @@ export async function deleteProduct(req, res) {
     });
   }
 }
+
+export async function findProduct(req,res){
+    try {
+       const getProduct= await Product.find(req.params.id);
+
+       if(getProduct){
+        return res.status(200).json({
+            message:"Product found",
+            data:getProduct
+        })
+       }
+
+       res.status(404).json({
+        messsage:"Product not found"
+       })
+        
+    } catch (e) {
+        res.status(500).json({
+            errorMessage: e.message,
+          });
+    }
+}
+
